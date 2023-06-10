@@ -46,19 +46,7 @@ public Polynomial(File file) throws FileNotFoundException{
 	
 }
 public Polynomial add(Polynomial poly) {
-/*	if (polynomial.length >= poly.polynomial.length) {
-		for(int i = 0; i<poly.polynomial.length; i++) {
-			polynomial[i] += poly.polynomial[i];
-		}
-		return this;
-	}
-	else{
-		for(int i = 0; i<polynomial.length; i++) {
-			poly.polynomial[i] += polynomial[i];
-		}
-		return poly;
-	}*/
-	
+
 	int maxL = expo.length + poly.expo.length;
 	double [] newCoeff = new double[maxL];
 	int [] newExpo = new int[maxL];
@@ -73,7 +61,7 @@ public Polynomial add(Polynomial poly) {
 		count++;
 	}
 	count = 0;
-	// You have added all exponents into an array, now go add the coefficients :)
+	
 	
 	for(int i: newExpo) {
 		if(existNum(expo,i) && existNum(poly.expo, i)) {
@@ -94,7 +82,7 @@ public Polynomial add(Polynomial poly) {
 		}
 	}
 	count = 0;
-	//Remove 0 coefficients.
+	
 	for(double i: newCoeff) {
 		if (i!=0) {
 			count++;
@@ -109,7 +97,7 @@ public Polynomial add(Polynomial poly) {
 			retCoeff[count] = newCoeff[i];
 			count++;
 		}
-	}//Remove redundant:)
+	}
 	for(int i =0; i<retExpo.length; i++) {
 		if(retExpo[i] != -1) {
 			for(int j = i+1; j<retExpo.length; j++) {
@@ -119,14 +107,7 @@ public Polynomial add(Polynomial poly) {
 			}
 		}
 	}
-	/*for(int i =0; i<retExpo.length; i++) {
-		System.out.print(retCoeff[i] + " ");
-	}
-	System.out.println();
-	for(int i =0; i<retExpo.length; i++) {
-		System.out.print(retExpo[i] + " ");
-	}
-	System.out.println();*/
+
 	
 	int newMax = 0;
 	for(int i: retExpo) {
@@ -169,9 +150,6 @@ public Polynomial multiply(Polynomial poly) {
 	int [] tempExpo = new int[maxL];
 	int count = 0;
 	
-	//First add all exponents (even redundent ones), then iterate through all of them while multiplying the new coefficients, 
-	// Then every duplicate expo u see, change it's value to -1 or smth, to symbolize it is a duplicate, then recreate a new one.
-	// Then reiterate the new one to find all coefficients with 0 to create a newer one, return newer one.
 	for(int i =0; i<this.expo.length; i++) {
 		for(int j =0; j<poly.expo.length; j++) {
 			tempCoeff[count]= coeff[i]*poly.coeff[j];
