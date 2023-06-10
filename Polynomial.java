@@ -1,4 +1,5 @@
 import java.util.*;
+
 import java.io.*;
 
 public class Polynomial {
@@ -196,7 +197,7 @@ public Polynomial multiply(Polynomial poly) {
 
 }
 
-public void saveToFile(String filename) throws Exception {
+public void saveToFile(String filename) throws IOException {
 	String retStr="";
 	for(int i =0; i<this.coeff.length; i++) {
 		retStr+= coeff[i];
@@ -208,6 +209,7 @@ public void saveToFile(String filename) throws Exception {
 	}
 	if(retStr.endsWith("+"))
 		retStr = retStr.substring(0,retStr.length()-1);
+	retStr = retStr.replace("+-", "-");
 	FileWriter writer = new FileWriter(new File(filename));
 	writer.write(retStr);
 	writer.close();
